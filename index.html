@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Portabilidade de Home Equity e Troco</title>
+  <meta name="description" content="Troque seu Home Equity, reduza a taxa e ainda libere dinheiro. Atendimento humano, sem burocracia." />
+  <meta name="theme-color" content="#0fb8ad" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b1220;--card:#0f172a;--muted:#93a4c0;--brand:#0fb8ad;--brand-2:#34d8cf;--text:#eaf2ff;--ok:#22c55e;--radius:18px;--shadow:0 14px 40px rgba(16,24,40,.22);--max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;overflow-x:hidden}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(1200px 600px at 80% -20%,rgba(15,184,173,.25),transparent 60%),radial-gradient(1000px 600px at -10% 10%,rgba(52,216,207,.15),transparent 60%),var(--bg)}
+    a{color:var(--brand);text-decoration:none}
+    .container{width:min(var(--max),92%);margin-inline:auto;max-width:100%}
+    .grid{display:grid;gap:22px}
+    .mobile-only{display:none}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:30;backdrop-filter:saturate(160%) blur(8px);background:linear-gradient(180deg,rgba(11,18,32,.9),rgba(11,18,32,.65));border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-name{font-weight:800;letter-spacing:.2px}
+    .brand-img{max-height:44px;height:auto;width:auto;display:block;object-fit:contain}
+    .cta-top{display:flex;gap:10px}
+    .btn{--bg:var(--brand);--fg:#061015;appearance:none;border:none;border-radius:12px;padding:12px 18px;font-weight:700;letter-spacing:.2px;cursor:pointer;transition:.2s transform,.2s box-shadow,.2s background-color;color:var(--fg);background:var(--bg);box-shadow:0 8px 24px rgba(15,184,173,.36);animation:pulse 2s infinite}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.secondary{--bg:transparent;--fg:var(--text);border:1px solid rgba(255,255,255,.14);box-shadow:none;animation:none}
+
+    /* Animação de pulsação */
+    @keyframes pulse {
+      0% { box-shadow: 0 8px 24px rgba(15,184,173,.36), 0 0 0 0 rgba(15,184,173,.7) }
+      70% { box-shadow: 0 8px 24px rgba(15,184,173,.36), 0 0 0 10px rgba(15,184,173,0) }
+      100% { box-shadow: 0 8px 24px rgba(15,184,173,.36), 0 0 0 0 rgba(15,184,173,0) }
+    }
+
+    /* Hero */
+    .hero{padding:58px 0 28px}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .kicker{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted);font-size:.86rem;max-width:100%;white-space:normal;line-height:1.3}
+    .kicker b{color:#c7d6ff}
+    h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.08;margin:16px 0 10px}
+    .sub{color:#c9d7ef;max-width:56ch}
+    .bullets{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 24px}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:999px;font-weight:600}
+
+    .hero-card{background:linear-gradient(180deg,#0f182d,#0e1a30 40%,#0a1224);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .notice{display:flex;gap:10px;align-items:flex-start;background:#07101e;border:1px dashed rgba(255,255,255,.16);padding:12px 14px;border-radius:12px;color:#cdd9f0}
+    .fine{font-size:.82rem;color:var(--muted)}
+
+    /* Sections */
+    section{padding:48px 0}
+    .section-sub{color:#cbd7f0;max-width:72ch;margin:6px 0 18px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg,#0f172a,#0c1529);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .card h3{margin:8px 0 8px;font-size:1rem;line-height:1.2}
+    .icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center}
+
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:6px}
+    .step{border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;background:#0a152a}
+    .step b{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:999px;background:var(--brand);color:#07201d;margin-right:8px}
+
+    .faq{max-width:900px;margin-inline:auto}
+    details{background:#0a1528;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:10px}
+
+    /* Images fix */
+    .testi-img{width:100%;height:220px;object-fit:cover;border-radius:12px;display:block}
+
+    /* Tiles de imóveis */
+    .tile{display:grid;gap:10px;padding:14px;background:#0a1528;border:1px solid rgba(255,255,255,.08);border-radius:16px}
+    .tile img{width:100%;height:180px;border-radius:12px;object-fit:cover;display:block}
+    .tile h4{margin:2px 0 0;font-size:1.02rem}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center;background:linear-gradient(180deg,#0f172a,#0c1529);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .about img{width:100%;height:280px;object-fit:cover;border-radius:16px}
+    .about .lead{font-size:1.1rem;color:#d7e3ff}
+
+    /* Footer */
+    footer{padding:36px 0 100px;border-top:1px solid rgba(255,255,255,.08);color:#bcd0f1}
+
+    /* CTA flutuante */
+    .float{position:fixed;right:18px;bottom:80px;z-index:1000;display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#25D366,#128C7E);color:white;padding:12px 14px;border-radius:999px;box-shadow:var(--shadow);animation:float-pulse 2s infinite}
+    .float .company-badge{background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600;margin-left:8px}
+
+    /* Animação do botão flutuante */
+    @keyframes float-pulse {
+      0% { transform: scale(1); box-shadow: 0 8px 24px rgba(37,211,102,.4), 0 0 0 0 rgba(37,211,102,.7) }
+      70% { transform: scale(1.05); box-shadow: 0 8px 24px rgba(37,211,102,.4), 0 0 0 10px rgba(37,211,102,0) }
+      100% { transform: scale(1); box-shadow: 0 8px 24px rgba(37,211,102,.4), 0 0 0 0 rgba(37,211,102,0) }
+    }
+
+    /* Responsivo */
+    @media (max-width:1020px){.hero .wrap{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.about{grid-template-columns:1fr}}
+    @media (max-width:680px){
+      *{overflow-x:hidden}
+      .cards{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .btn{width:100%;margin-bottom:10px}
+      .mobile-hide{display:none}
+      .mobile-only{display:inline-block}
+      .nav{padding:10px 0}
+      .hero{padding:30px 0 20px}
+      .grid[style*="grid-template-columns:repeat(2,auto)"]{grid-template-columns:1fr !important}
+      .bullets{flex-direction:column;align-items:flex-start}
+      .chip{width:100%}
+      h1{font-size:1.8rem;margin:12px 0 8px}
+      .hero-card{margin-top:20px}
+      section{padding:30px 0}
+      .testi-img{height:180px}
+      .card{padding:15px}
+      .card h3{font-size:1.2rem}
+      .step{padding:12px}
+      .faq{margin-top:20px}
+      details{padding:12px;margin-bottom:8px}
+      .float{right:10px;bottom:10px;padding:10px 12px}
+      .about img{height:200px}
+      img{max-width:100%;height:auto}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img class="brand-img" src="Supremus Logo 1 (1).png" alt="Supremus" />
+      </a>
+      <div class="cta-top">
+        <a class="btn secondary mobile-hide" href="#sobre">Como funciona</a>
+        <a class="btn btn-pulse" href="https://wa.me/5511912844643" target="_blank" rel="noopener">
+          <span class="mobile-hide">Falar no WhatsApp</span>
+          <span class="mobile-only">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <span class="kicker">Desde 2014, mais de <b>R$ 1 bi</b> originados e clientes felizes</span>
+          <h1>Pague menos e tenha dinheiro sobrando!</h1>
+          <p class="sub">Faça a portabilidade do seu crédito imobiliário com rapidez, reduza suas taxas e libere até <b>60% do valor do seu imóvel</b> para usar como quiser. Tem um empréstimo com garantia de imóvel? Troque por taxas menores e ainda receba dinheiro extra com total segurança.</p>
+          <div class="bullets">
+            <div class="chip">Taxa a partir de 1,19% a.m.</div>
+            <div class="chip">Até 60% do valor do imóvel</div>
+            <div class="chip">Atendimento humano, zero burocracia</div>
+          </div>
+          <div class="grid" style="grid-template-columns:repeat(2,auto);gap:12px;margin-top:8px">
+            <a class="btn btn-pulse" href="https://wa.me/5511912844643" target="_blank">Faça uma simulação gratuita</a>
+            <a class="btn secondary" target="_blank" rel="noopener" href="https://wa.me/5511912844643">Falar no WhatsApp</a>
+          </div>
+          <ul style="margin:18px 0 0;padding-left:18px;color:#cbd7f0;line-height:1.6">
+            <li><b>1.</b> Simulação 100% gratuita</li>
+            <li><b>2.</b> Não cobramos nenhuma taxa do cliente</li>
+            <li><b>3.</b> Nao cobramos comissão  ao Cliente</li>
+            <li><b>4.</b> Nosso objetivo é trazer a <b>melhor taxa</b> para você</li>
+            <li><b>5.</b> Empresa credenciada <b>Money Brokers</b></li>
+            <li><b>6.</b> Cumprimos a <b>LGPD (Lei nº 13.709/2018)</b></li>
+          </ul>
+        </div>
+        <aside class="hero-card">
+          <div class="notice">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#34d8cf" d="M11 15h2V9h-2v6zm0 4h2v-2h-2v2zM1 21h22L12 2 1 21z"/></svg>
+            <div><b>Tire dúvidas agora pelo WhatsApp</b> — atendimento humano e imediato.</div>
+          </div>
+          <div class="grid" style="gap:10px;margin-top:12px">
+            <a class="btn" target="_blank" rel="noopener" href="https://wa.me/5511912844643">Quero falar com um especialista</a>
+            <p class="fine">Sem formulário, sem burocracia. Resposta em horário comercial.</p>
+            <ul class="fine" style="margin:6px 0 0;line-height:1.6">
+              <li>Simulação 100% gratuita</li>
+              <li>Não cobramos nenhuma taxa do cliente</li>
+              <li>Comissão paga pelos bancos/fundos credenciados</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PROVAS / BENEFÍCIOS -->
+    <section id="sobre">
+      <div class="container">
+        <div class="cards">
+          <div class="card"><h3>Parcela menor</h3><p>Troque uma dívida cara por uma condição mais leve. Alívio no fluxo de caixa sem perder a segurança do seu patrimônio.</p></div>
+          <div class="card"><h3>Dinheiro na mão</h3><p>Possibilidade de liberar <b>até 60% do valor do imóvel</b> para quitar dívidas com desconto, investir ou reforçar capital de giro.</p></div>
+          <div class="card"><h3>Atendimento humano</h3><p>Time especialista acompanha da negociação com o banco antigo até a liberação do novo crédito. Zero burocracia.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: TIPOS DE IMÓVEIS + SOBRE A SUPREMUS -->
+    <section id="imoveis">
+      <div class="container">
+        <h2 style="margin:4px 0 10px">Tipos de Imóveis Aceitos</h2>
+        <p class="section-sub">Se o seu imóvel está em área de alto padrão, ele pode trabalhar por você.</p>
+
+        <div class="cards">
+          <div class="tile">
+            <img src="https://www.galeriadaarquitetura.com.br/Img/projeto/SF1/5655/casa-condominio-tabatinga2525.jpg" alt="Casa em condomínio" loading="lazy">
+            <h4>Casas em condomínio</h4>
+          </div>
+          <div class="tile">
+            <img src="https://fortresshome.com/components/images/assets/blocks/block-8/image.webp" alt="Terreno em condomínio" loading="lazy">
+            <h4>Terrenos em condomínio</h4>
+          </div>
+          <div class="tile">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop" alt="Apartamento de alto padrão" loading="lazy">
+            <h4>Apartamentos</h4>
+          </div>
+        </div>
+
+        <div class="about" style="margin-top:22px">
+          <div>
+            <h2 style="margin:0 0 8px">Sobre a Supremus Cred</h2>
+            <p class="lead">A Supremus Cred é especializada em crédito com garantia de imóvel para clientes exigentes, que valorizam segurança, discrição e agilidade. Nossa missão é transformar patrimônio em oportunidades inteligentes.</p>
+            <a class="btn btn-pulse" style="margin-top:10px" target="_blank" rel="noopener" href="https://wa.me/5511912844643">Simular meu crédito</a>
+          </div>
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Escritório Supremus Cred" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section>
+      <div class="container">
+        <h2 style="margin:4px 0 14px">Histórias reais de clientes</h2>
+        <p style="color:#cbd7f0;max-width:68ch">Profissionais que trocaram o Home Equity, reduziram a taxa e investiram melhor o capital.</p>
+        <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card" style="display:grid;gap:12px"><img class="testi-img" src="https://img.freepik.com/fotos-gratis/vista-frontal-de-um-barbeiro-segurando-uma-tesoura-na-barbearia_23-2148985743.jpg" alt="Cliente barbearia"><h3>Empresário de Barbearia</h3><p>“Troquei a dívida, baixei a parcela e investi em reforma e marketing. O movimento cresceu muito.”</p></div>
+          <div class="card" style="display:grid;gap:12px"><img class="testi-img" src="https://tse2.mm.bing.net/th/id/OIP.fZU55joIjgHYWJo_GutgGwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Investidor"><h3>Investidor do Mercado Financeiro</h3><p>“Com o troco, aumentei minha carteira e mantive uma taxa menor. Fluxo de caixa ficou previsível.”</p></div>
+          <div class="card" style="display:grid;gap:12px"><img class="testi-img" src="https://img.freepik.com/free-photo/modern-businesswoman-with-plan-level_23-2147702535.jpg" alt="Arquiteta"><h3>Arquiteta</h3><p>“Reduzi os juros e consegui capital para abrir um estúdio próprio. Atendimento foi super humano.”</p></div>
+        </div>
+        <div class="cards" style="grid-template-columns:repeat(2,1fr);margin-top:16px">
+          <div class="card" style="display:grid;gap:12px"><img class="testi-img" src="https://img.freepik.com/fotos-gratis/retrato-de-trabalhador-de-saude-em-equipamento-especial_23-2148980742.jpg" alt="Clínico geral"><h3>Clínico Geral</h3><p>“Usei o crédito para modernizar consultório e equipamentos. Parcela ficou bem mais confortável.”</p></div>
+          <div class="card" style="display:grid;gap:12px"><img class="testi-img" src="https://tse1.mm.bing.net/th/id/OIP.Z5GewW-quVvnBsA5_2hSTQHaEv?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Empresária"><h3>Empresária de E-commerce</h3><p>“Portabilidade foi decisiva para crescer sem sufocar o caixa. Recomendo a Supremus.”</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASSO A PASSO -->
+    <section>
+      <div class="container">
+        <h2 style="margin:4px 0 14px">Como acontece a portabilidade</h2>
+        <p style="color:#cbd7f0;max-width:68ch">Processo claro e transparente, com você no controle do início ao fim.</p>
+        <div class="steps">
+          <div class="step"><p><b>1</b> Coleta de dados básicos e análise de viabilidade.</p></div>
+          <div class="step"><p><b>2</b> Proposta com taxa alvo e estimativa de parcela.</p></div>
+          <div class="step"><p><b>3</b> Negociação e aprovação no novo banco.</p></div>
+          <div class="step"><p><b>4</b> Quita o contrato antigo, formaliza e <span style="font-weight:normal;font-size:inherit;">libera o troco</span>.</p></div>
+        </div>
+        
+        <!-- Imagem do casal assinando documentos -->
+        <div style="margin-top:30px;text-align:center;background:linear-gradient(180deg,#0f172a,#0c1529);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)">
+          <h3 style="margin:0 0 15px">Assinatura simplificada e segura</h3>
+          <img src="664444d2-f73b-4c77-bec9-1fa7246e4bb7.jpg" alt="Casal assinando contrato de portabilidade" style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.2)" />
+          <p style="margin-top:15px;color:#cbd7f0">Nossos especialistas acompanham todo o processo de assinatura, garantindo segurança e tranquilidade.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ + CTA -->
+    <section>
+      <div class="container" style="text-align:center;margin-bottom:10px">
+        <a class="btn btn-pulse" target="_blank" rel="noopener" href="https://wa.me/5511912844643">Falar agora no WhatsApp</a>
+      </div>
+      <div class="container faq">
+        <h2 style="margin:6px 0 12px">Perguntas frequentes</h2>
+        <details><summary>Qual taxa posso conseguir?</summary><p>Trabalhamos para atingir <b>a partir de 1,09% a.m.</b> A taxa final depende do perfil e do imóvel. A simulação inicial é gratuita.</p></details>
+        <details><summary>É necessário trocar de banco?</summary><p>Sim. A portabilidade quita o contrato antigo e abre um novo, com condições melhores. Cuidamos de toda a transição.</p></details>
+        <details><summary>Em quanto tempo sai o dinheiro?</summary><p>Após aprovação e registro, ocorre a quitação e a liberação do troco conforme política do banco. Mantemos você atualizado em cada etapa.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Marca no rodapé -->
+  <section id="marca" style="padding:30px 0;border-top:1px solid rgba(255,255,255,.08)">
+    <div class="container" style="display:grid;place-items:center;gap:10px">
+      <img src="Supremus Logo 1 (1).png" alt="Supremus" style="max-width:320px;width:100%;height:auto;opacity:.95" />
+      <p class="fine" style="text-align:center;color:#cbd7f0">Empresa credenciada <b>Money Brokers</b> • CNPJ 55.650.799/0001-53 • Conformidade com a <b>LGPD (Lei nº 13.709/2018)</b></p>
+    </div>
+  </section>
+  <footer>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+      <small>© <span id="yr"></span> Supremus — Todos os direitos reservados.</small>
+      <div style="display:flex;gap:12px;align-items:center">
+        <small><a href="https://wa.me/5511912844643" target="_blank" rel="noopener">Fale com um especialista</a></small>
+        <a href="https://www.instagram.com/supremuscred?igsh=MTR3ODJ6ZGV0bGdjOQ==" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#E4405F,#C13584,#833AB4);border-radius:8px;color:white;text-decoration:none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="float" href="https://wa.me/5511912844643" target="_blank" rel="noopener">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+    </svg>
+    Fale com especialista
+    <span class="company-badge">Empresa Verificada</span>
+  </a>
+
+  <script>
+    (function(){
+      var yrEl = document.getElementById('yr');
+      if (yrEl) yrEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
